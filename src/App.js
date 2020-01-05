@@ -1,12 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LoginPage from "./components/Login/LoginPage";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
     <div className="App">
-      <LoginPage/>
+        <Router>
+            <Route exact path='/' render={(props) => (
+                <LoginPage {...props}/>
+            )}/>
+            <Route exact path='/dashboard' render={(props) => (
+                <Dashboard {...props}/>
+            )}/>
+        </Router>
     </div>
   );
 }

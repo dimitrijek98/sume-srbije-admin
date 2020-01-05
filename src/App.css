@@ -59,7 +59,57 @@
   background-color: rgba(255,255,255,0.2);
 
 }
-
 .form-size{
   width: 60%;
+}
+.side-nav{
+  background-color: #4f90ff;
+  height: 100vh;
+}
+.side-nav-container{
+  height: 100vh;
+  padding-top: 30vh;
+}
+.side-nav-link{
+  cursor: pointer;
+  color:white;
+  font-size: 19px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: transparent;
+}
+
+.side-nav-link:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.side-nav-link-active{
+  cursor: pointer;
+  color:darkblue;
+  font-size: 19px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.side-nav-link-active:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forms{
+  padding: 0 60px 0 60px;
+}
+
+.header{
+  margin-top: 20px;
+  margin-bottom: 80px;
+  padding :5px 0;
+  color: white;
+  background-color: rgba(79, 144, 255, 0.6);
+  border-radius: 5px;
 }
