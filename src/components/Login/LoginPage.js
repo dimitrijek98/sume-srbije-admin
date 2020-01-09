@@ -6,15 +6,29 @@ class LoginPage extends Component {
         super(props);
         this.AuthService = new AuthService();
         this.state = {
-            email: '',
-            password: '',
+            email: 'admin@admin.com',
+            password: 'admin',
         }
     }
 
     login = (e) => {
         e.preventDefault();
-        this.AuthService.Login(this.state.email, this.state.password);
-        this.props.history.push('/dashboard');
+        this.AuthService.Login(this.state.email, this.state.password)
+        .then(response => {
+            if(response.status === 200){
+                 localStorage.setItem('admin', JSON.stringify(response.data));
+                this.props.history.push('/dashboard');
+            }
+         })
+         .catch(err => {
+             console.log(err.body, err.data, err);
+            if(err.status === 404){
+                alert(err.data);
+            }
+            if(err.status === 422){
+                alert(err.data);
+            }
+         });
     };
 
     handleInput = (e) => {
@@ -40,7 +54,7 @@ class LoginPage extends Component {
                                            className="form-control mt-2"/>
                                 </div>
 
-                                <button onClick={this.login} disabled={!this.state.email || !this.state.password}
+                                <button onClick={this.login} 
                                         type="submit" className="btn btn-light">Log in
                                 </button>
                             </form>
