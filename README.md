@@ -4,6 +4,7 @@ LoginPage.js fajl predstavlja stranicu na kojoj je moguce uneti dobijeni email i
 U slucaju korektnog logovanja, admin je prosledjen na dashboard. Na dashboardu se nalaze 3 forme, za unos nove statistike, za unos novog drveta i njegove statistike i za uklanjanje drveta iz baze. Ove forme nalaze se u Forms.js fajlu. 
 Funkcije za logovanje admina rade sa AuthService.js fajlom, a funkcije za izmenu baze sa SumeService.js fajlom. Oba service fajla nalaze se u folderu services. Koriscenjem axios.get i axios.post metoda, vrsi se komunikacija sa backednom.
 
+Za svako unosenje podataka o statistici pamti se mesec i godina za koju su ti podaci uneti. Odnosno na osnovu trenutnog datuma se podaci uzimaju. Na klijentskoj strani aplikacije vidljivi su podaci koji su uneti prosle godine. To znaci da svi podaci koji se sada unesu su trenutno vidljivi samo u bazi, a ne na klijentskoj aplikaciji. Klijent ce moci da ih vidi tek pocetkom sledece godine. Za potrebe testiranja moguce je u klijentskoj aplikaciji promeniti da se prikazuju podaci za ovu godinu. Vise o tome u README.md na sume-srbije.
 Admin aplikacija se pokrece na http://localhost:3000.
 
 
