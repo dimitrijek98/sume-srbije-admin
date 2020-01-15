@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { regioni } from "../../Regioni";
-import ApiService from "../../services/ApiService";
+import SumeService from "../../services/SumeService";
 
 class Forms extends Component {
     constructor(props) {
         super(props);
-        this.ApiService = new ApiService();
+        this.SumeService = new SumeService();
         this.state = {
             treesData: [],
             regionsData: [],
@@ -15,6 +15,9 @@ class Forms extends Component {
             brZas: 0,
             povrsZas: 0,
             treeName: '',
+            regId: 0,
+            treeId:0,
+            tipId:0,
         }
     }
     componentDidMount = () => {
@@ -23,9 +26,8 @@ class Forms extends Component {
      }
  
     getTrees = () =>{
-        this.ApiService.getAllTrees()
+        this.SumeService.getAllTrees()
         .then(response => {
-            console.log(response.data);
             let data = response.data.map(reg => {
                 return {...reg}
             })
@@ -33,9 +35,8 @@ class Forms extends Component {
         })
     }
     getRegions= () =>{
-        this.ApiService.getAllRegions()
+        this.SumeService.getAllRegions()
         .then(response => {
-            console.log(response.data);
             let data = response.data.map(reg => {
                 return {...reg}
             })
@@ -43,28 +44,31 @@ class Forms extends Component {
         })
     }
     deleteTree = (e) =>{
-        this.ApiService.deleteTree()
+        this.SumeService.deleteTree(this.state.treeId)
         .then(response => {
             if(response.status === 200){
                 alert("Drvo izbrisano!");
+                this.props.history.push('/dashboard');
             }
         }
         );
     }
-    addTree= (e) =>{
-        this.ApiService.setNewStatistics(/*regId, treeId,*/this.state.brZas, this.state.brPos,this.state.povrsZas,this.state.povrsPos)
+    addStats = (e) =>{
+        this.SumeService.setNewStatistics(this.state.regId, this.state.treeId, this.state.brZas, this.state.brPos,this.state.povrsZas,this.state.povrsPos)
         .then(response => {
             if(response.status === 200){
                 alert("Statisitka dodata.");
+                this.props.history.push('/dashboard');
             }
         }
         );
     }
-    addStats= (e) =>{
-        this.ApiService.setNewTreeAndStatistics(/*typeID*/this.state.treeName,/*regId,*/this.state.brZas, this.state.brPos,this.state.povrsZas,this.state.povrsPos)
+    addTree = (e) =>{
+        this.SumeService.setNewTreeAndStatistics(this.state.tipId, this.state.treeName, this.state.regId, this.state.brZas, this.state.brPos,this.state.povrsZas,this.state.povrsPos)
         .then(response => {
             if(response.status === 200){
                 alert("Statisitka dodata.");
+                this.props.history.push('/dashboard');
             }
         }
         );
@@ -72,6 +76,18 @@ class Forms extends Component {
     handleInput = (e) => {
         this.setState({[e.target.name]: e.target.value});
     };
+    selectRegion = (e) => {
+        let region = e.target.value;
+        this.setState({regId: region});
+    }
+    selectTree = (e) => {
+        let tree = e.target.value;
+        this.setState({treeId : tree });
+    }
+    selectTip = (e) => {
+        let tip = e.target.value;
+        this.setState({tipId: tip });
+    }
     render() {
         return (
             <div className='col-lg-10 forms'>
@@ -82,15 +98,15 @@ class Forms extends Component {
                     <div>
                         <div className="form-row">
                             <div className="form-group col-md-4">
-                                <label htmlFor="inputState">Region</label>
-                                <select className="form-control">
+                                <label>Region</label>
+                                <select onChange={this.selectRegion} className="form-control">
                                     <option selected>Izaberite...</option>
                                     {this.state.regionsData.map(region => <option value={region.id}>{region.ime}</option>)}
                                 </select>
                             </div>
                             <div className="form-group col-md-4">
-                                <label htmlFor="inputState">Drvo</label>
-                                <select className="form-control">
+                                <label>Drvo</label>
+                                <select onChange={this.selectTree} className="form-control">
                                     <option selected>Izaberite...</option>
                                     {this.state.treesData.map(tree => <option value={tree.id}>{tree.ime}</option>)}
                                 </select>
@@ -119,11 +135,11 @@ class Forms extends Component {
                         <div>
                             <div className="form-row">
                                 <div className="form-group col-md-4">
-                                    <label htmlFor="inputState">Tip</label>
-                                    <select id="inputState" className="form-control">
+                                    <label>Tip</label>
+                                    <select onChange={this.selectTip} className="form-control">
                                         <option selected>Izaberite...</option>
-                                        <option >Listopadno</option>
-                                        <option >Zimzeleno</option>
+                                        <option value={1}>Listopadno</option>
+                                        <option value={2} >Zimzeleno</option>
                                     </select>
                                 </div>
                                 <div className="form-group col-md-2">
@@ -133,8 +149,8 @@ class Forms extends Component {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-4">
-                                    <label htmlFor="inputState">Region</label>
-                                    <select id="inputState" className="form-control">
+                                    <label>Region</label>
+                                    <select onChange={this.selectRegion} className="form-control">
                                         <option selected>Izaberite...</option>
                                         {this.state.regionsData.map(region => <option value={region.id}>{region.ime}</option>)}
                                     </select>
@@ -162,7 +178,7 @@ class Forms extends Component {
                         <div>
                             <div className="form-group col-md-4">
                                     <label>Drvo</label>
-                                    <select className="form-control">
+                                    <select onChange={this.selectTree} className="form-control">
                                         <option selected>Izaberite...</option>
                                         {this.state.treesData.map(tree => <option value={tree.id}>{tree.ime}</option>)}
                                     </select>
