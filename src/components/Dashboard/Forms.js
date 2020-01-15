@@ -47,7 +47,7 @@ class Forms extends Component {
             .then(response => {
                 if (response.status === 200) {
                     alert("Drvo izbrisano!");
-                    this.props.history.push('/dashboard');
+                    window.location.reload();
                 }
             }
             );
@@ -57,7 +57,7 @@ class Forms extends Component {
             .then(response => {
                 if (response.status === 200) {
                     alert("Statisitka dodata.");
-                    this.props.history.push('/dashboard');
+                    window.location.reload();
                 }
             }
             );
@@ -67,7 +67,7 @@ class Forms extends Component {
             .then(response => {
                 if (response.status === 200) {
                     alert("Statisitka dodata.");
-                    this.props.history.push('/dashboard');
+                    window.location.reload();
                 }
             }
             );
@@ -118,7 +118,7 @@ class Forms extends Component {
                             </div>
                             <div className="form-group col-md-2">
                                 <label>Površina zasađenih stabala</label>
-                                <input type="number" className="form-control" name='povrsZas' onChange={this.handleInput} />
+                                <input type="number" step=".01" className="form-control" name='povrsZas' onChange={this.handleInput} />
                             </div>
                             <div className="form-group col-md-2">
                                 <label>Broj posečenih stabala</label>
@@ -126,7 +126,7 @@ class Forms extends Component {
                             </div>
                             <div className="form-group col-md-2">
                                 <label>Površina posečenih stabala</label>
-                                <input type="number" className="form-control" name='povrsPos' onChange={this.handleInput} />
+                                <input type="number" step=".01" className="form-control" name='povrsPos' onChange={this.handleInput} />
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ class Forms extends Component {
                                 </div>
                                 <div className="form-group col-md-2">
                                     <label>Površina zasađenih stabala</label>
-                                    <input type="number" className="form-control" name='povrsZas' onChange={this.handleInput} />
+                                    <input type="number" step=".01" className="form-control" name='povrsZas' onChange={this.handleInput} />
                                 </div>
                                 <div className="form-group col-md-2">
                                     <label>Broj posečenih stabala</label>
@@ -170,7 +170,7 @@ class Forms extends Component {
                                 </div>
                                 <div className="form-group col-md-2">
                                     <label>Površina posečenih stabala</label>
-                                    <input type="number" className="form-control" name='povrsPos' onChange={this.handleInput} />
+                                    <input type="number" step=".01" className="form-control" name='povrsPos' onChange={this.handleInput} />
                                 </div>
                             </div>
                         </div> :

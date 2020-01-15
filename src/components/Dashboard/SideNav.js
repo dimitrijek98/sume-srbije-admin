@@ -22,6 +22,11 @@ class SideNav extends Component {
                                     className={this.props.selected === '3' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Uklanjanje drveta
                             </button>
                         </div>
+                        <div className='col-12'>
+                            <button onClick={this.props.logOut} value={4}
+                                    className={this.props.selected === '4' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Odjavi se
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

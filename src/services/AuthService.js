@@ -10,4 +10,11 @@ export default class AuthService extends ApiService {
     Login(email, password){
         return axios.post(`${this.baseUrl}login`,  {password:password, email:email});        
     }
+    LogOut(){
+        localStorage.removeItem("admin");
+                
+    }
+    CheckForUser(){
+        return localStorage.getItem("admin");
+    }
 }
