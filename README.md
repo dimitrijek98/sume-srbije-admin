@@ -1,3 +1,13 @@
+# sume-srbija-admin
+Projekat na ovom repozitorijumu predstavlja admin deo nase aplikacije. Sam administratorski deo sluzi za unos novih statistika na mesecnom nivou, pozeljno par dana pred kraj meseca, kako bi statistika bila sto verodostojnija. Admin je lice sa posebnim ovlascenjem, ne postoji nikakv tip registracije jer se ovlascenja dobijaju od strane nadleznih koji admin podatke (email i password) direktno unose u bazu i daju adminu na koriscenje.
+LoginPage.js fajl predstavlja stranicu na kojoj je moguce uneti dobijeni email i password. U slucaju uspesnog logovanja admin biva prosledjen na dashboard. Ukoliko je pri logovanju pogresio sifru, bacend vraca gresku 422 i admin se o tome obavestava alert-om. Ukoliko je pri logovanju pogresen email ili zapravo takav ne postoji, backend vraca gresku 404 i admin se o tome obavestava alert-om.
+U slucaju korektnog logovanja, admin je prosledjen na dashboard. Na dashboardu se nalaze 3 forme, za unos nove statistike, za unos novog drveta i njegove statistike i za uklanjanje drveta iz baze. Ove forme nalaze se u Forms.js fajlu. 
+Funkcije za logovanje admina rade sa AuthService.js fajlom, a funkcije za izmenu baze sa SumeService.js fajlom. Oba service fajla nalaze se u folderu services. Koriscenjem axios.get i axios.post metoda, vrsi se komunikacija sa backednom.
+
+Admin aplikacija se pokrece na http://localhost:3000.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
