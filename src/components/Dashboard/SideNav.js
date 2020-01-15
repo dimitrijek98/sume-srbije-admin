@@ -9,19 +9,17 @@ class SideNav extends Component {
                     <div className='row'>
                         <div className='col-12'>
                             <button onClick={this.props.navClick} value={1}
-                                    className={this.props.selected === '1' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Nove
-                                Sume
+                                    className={this.props.selected === '1' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Nova statistika šume
                             </button>
                         </div>
                         <div className='col-12'>
                             <button onClick={this.props.navClick} value={2}
-                                    className={this.props.selected === '2' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Smanjenje
-                                Suma
+                                    className={this.props.selected === '2' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Novo drvo i statistika
                             </button>
                         </div>
                         <div className='col-12'>
                             <button onClick={this.props.navClick} value={3}
-                                    className={this.props.selected === '3' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Sume
+                                    className={this.props.selected === '3' ? 'btn btn-block side-nav-link-active' : 'btn side-nav-link'}>Uklanjanje drveta
                             </button>
                         </div>
                     </div>

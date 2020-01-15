@@ -6,8 +6,8 @@ class LoginPage extends Component {
         super(props);
         this.AuthService = new AuthService();
         this.state = {
-            email: 'admin@admin.com',
-            password: 'admin',
+            email: '',
+            password: '',
         }
     }
 
@@ -21,12 +21,11 @@ class LoginPage extends Component {
             }
          })
          .catch(err => {
-             console.log(err.body, err.data, err);
-            if(err.status === 404){
-                alert(err.data);
+            if(err == "Error: Request failed with status code 404"){
+                alert("Ne postoji admin.");
             }
-            if(err.status === 422){
-                alert(err.data);
+            else if(err == "Error: Request failed with status code 422"){
+                alert("Pogresili ste sifru.");
             }
          });
     };
@@ -54,7 +53,7 @@ class LoginPage extends Component {
                                            className="form-control mt-2"/>
                                 </div>
 
-                                <button onClick={this.login} 
+                                <button onClick={this.login} disabled={!this.state.email || !this.state.password}
                                         type="submit" className="btn btn-light">Log in
                                 </button>
                             </form>
